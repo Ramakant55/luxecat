@@ -21,6 +21,10 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Pages where navbar should always be visible (not transparent at top)
+  const alwaysVisiblePages = ['/booking', '/about', '/contact'];
+  const isAlwaysVisiblePage = alwaysVisiblePages.includes(location.pathname);
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
@@ -35,7 +39,7 @@ const Navbar = () => {
   return (
     <motion.nav
       className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/90 backdrop-blur-sm py-2 shadow-lg' : 'bg-transparent py-4'
+        scrolled || isAlwaysVisiblePage ? 'bg-white/90 backdrop-blur-sm py-2 shadow-lg' : 'bg-transparent py-4'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
