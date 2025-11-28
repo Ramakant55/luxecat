@@ -83,16 +83,16 @@ const Testimonials = () => {
             >
               {testimonials.map((testimonial) => (
                 <div key={testimonial.id} className="w-full flex-shrink-0 px-4">
-                  <div className="glass-card p-8 md:p-12 text-center">
+                  <div className="glass-card p-6 md:p-8 lg:p-12 text-center">
                     <Quote className="text-gold mx-auto mb-6" size={40} />
                     
-                    <p className="text-gray-600 text-lg md:text-xl italic mb-8 max-w-3xl mx-auto">
+                    <p className="text-gray-600 text-base md:text-lg lg:text-xl italic mb-6 md:mb-8 max-w-3xl mx-auto">
                       "{testimonial.content}"
                     </p>
                     
-                    <div className="flex justify-center mb-6">
+                    <div className="flex justify-center mb-4 md:mb-6">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="text-gold fill-current" size={24} />
+                        <Star key={i} className="text-gold fill-current" size={20} />
                       ))}
                     </div>
                     
@@ -100,10 +100,10 @@ const Testimonials = () => {
                       <img 
                         src={testimonial.image} 
                         alt={testimonial.name} 
-                        className="w-16 h-16 rounded-full object-cover mb-4"
+                        className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover mb-3 md:mb-4"
                       />
-                      <h3 className="text-xl font-heading font-bold">{testimonial.name}</h3>
-                      <p className="text-gray-600">{testimonial.role}</p>
+                      <h3 className="text-lg md:text-xl font-heading font-bold">{testimonial.name}</h3>
+                      <p className="text-gray-600 text-sm md:text-base">{testimonial.role}</p>
                     </div>
                   </div>
                 </div>
@@ -111,10 +111,10 @@ const Testimonials = () => {
             </motion.div>
           </div>
 
-          {/* Navigation Buttons */}
+          {/* Navigation Buttons - Hidden on mobile, visible on tablet and above */}
           <button 
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-6 bg-gold text-white p-3 rounded-full hover:bg-gold-dark transition-colors"
+            className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-6 bg-gold text-white p-2 md:p-3 rounded-full hover:bg-gold-dark transition-colors"
             aria-label="Previous testimonial"
           >
             &#8249;
@@ -122,19 +122,19 @@ const Testimonials = () => {
           
           <button 
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-6 bg-gold text-white p-3 rounded-full hover:bg-gold-dark transition-colors"
+            className="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-6 bg-gold text-white p-2 md:p-3 rounded-full hover:bg-gold-dark transition-colors"
             aria-label="Next testimonial"
           >
             &#8250;
           </button>
 
           {/* Dots Indicator */}
-          <div className="flex justify-center mt-8 space-x-2">
+          <div className="flex justify-center mt-6 md:mt-8 space-x-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-colors ${
+                className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-colors ${
                   index === currentIndex ? 'bg-gold' : 'bg-gray-300'
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
@@ -145,7 +145,7 @@ const Testimonials = () => {
 
         {/* Stats Section */}
         <motion.div 
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 max-w-4xl mx-auto"
+          className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-8 mt-12 md:mt-20 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -157,9 +157,9 @@ const Testimonials = () => {
             { number: "15+", label: "Years Experience" },
             { number: "5★", label: "Average Rating" }
           ].map((stat, index) => (
-            <div key={index} className="glass-card p-6 text-center">
-              <div className="text-3xl font-heading font-bold text-gold mb-2">{stat.number}</div>
-              <div className="text-gray-600">{stat.label}</div>
+            <div key={index} className="glass-card p-4 md:p-6 text-center">
+              <div className="text-2xl md:text-3xl font-heading font-bold text-gold mb-1 md:mb-2">{stat.number}</div>
+              <div className="text-gray-600 text-sm md:text-base">{stat.label}</div>
             </div>
           ))}
         </motion.div>
